@@ -34,7 +34,7 @@ if ingredients_list:
   for fruit_chosen in ingredients_list:
     ingredients_string += fruit_chosen + ' '
     st.subheader(fruit_chosen + 'Nutrition Information')
-    smoothiefroot_response = requests.get("https://melaniesmoothies-rishi/api/fruit/"+fruit_chosen)
+    smoothiefroot_response = requests.get("https://smoothiefroot/api/fruit/"+fruit_chosen)
     sf_df = st.dataframe(data = smoothiefroot_response.json(),use_container_width = True)
     #st.write(ingredients_string)
     my_insert_stmt = """ insert into smoothies.public.orders(name_on_order,ingredients)
@@ -47,6 +47,6 @@ if ingredients_list:
       session.sql(my_insert_stmt).collect()
       st.success('Your Smoothie is ordered!' + name_on_order, icon="✅")
 import requests
-smoothiefroot_response = requests.get("https://melaniesmoothies-rishi/api/fruit/watermelon")
+smoothiefroot_response = requests.get("https://smoothiefroot/api/fruit/watermelon")
 #st.text(smoothiefroot_response.json())
 sf_df = st.dataframe(data = smoothiefroot_response.json(),use_container_width = True)
